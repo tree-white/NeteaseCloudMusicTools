@@ -1,0 +1,19 @@
+{
+  "main": "index.html",
+  "logo": "src/assets/可达鸭.jpeg",
+  "features": [
+    {
+      "code": "NeteaseCloudMusicTools",
+      "explain": "网易云音乐工具",
+      "cmds": [
+        "NeteaseCloudMusic",
+        "网易云音乐",
+        "网易云音乐上传",
+        "上传云盘"
+      ]
+    }
+  ],
+  "development": {
+    "main": "http://localhost:4000/"
+  }
+}
