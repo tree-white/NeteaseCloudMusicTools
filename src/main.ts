@@ -1,11 +1,15 @@
 import { createApp } from 'vue'
-import './style.css'
 import App from './App.vue'
 import setupRouter from './router'
-import '@/plugins/tailwindcss/tailwindcss.scss'
+import setupPlugins from './plugins'
 
-const app = createApp(App)
+async function bootstrap() {
+  const app = createApp(App)
 
-setupRouter(app)
+  setupRouter(app)
+  setupPlugins(app)
 
-app.mount('#app')
+  app.mount('#app')
+}
+
+bootstrap()

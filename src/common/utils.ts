@@ -6,15 +6,15 @@ function getName(name: string) {
 
 export default {
   /** 获取本地存储 */
-  getStorage(key: string) {
-    return window.localStorage.getItem(getName(key)) || null
+  getStorage<T>(key: string) {
+    return JSON.parse(window.localStorage.getItem(getName(key))!) as T | null
   },
   /** 存储到本地存储 */
-  saveStorage(key: string, value: any = null) {
-    window.localStorage.setItem(getName(key), value)
+  saveStorage(key: string, value: any) {
+    window.localStorage.setItem(getName(key), JSON.stringify(value))
   },
   /** 删除本地存储 */
-  delStorage(key: string) {
-    window.localStorage.removeItem(key)
+  removeStorage(key: string) {
+    window.localStorage.removeItem(getName(key))
   }
 }
