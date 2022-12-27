@@ -1,10 +1,10 @@
 <script setup lang="ts">
   import systemStore from '@/store/systemStore'
+  import userInfoStore from '@/store/userInfoStore'
   const system = systemStore()
+  const userInfo = userInfoStore()
 
-  const emit = defineEmits<{
-    (event: 'refresh'): void
-  }>()
+  const emit = defineEmits<{ (event: 'refresh'): void }>()
   const showSetting = ref<boolean>(false)
   const form = ref({ baseUrl: '' })
 
@@ -28,7 +28,7 @@
       <template #dropdown>
         <el-dropdown-menu>
           <el-dropdown-item @click="showSetting = true">设置</el-dropdown-item>
-          <el-dropdown-item v-if="$route.name !== 'login'">退出登录</el-dropdown-item>
+          <el-dropdown-item v-if="$route.name !== 'login'" @click="userInfo.logout">退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>

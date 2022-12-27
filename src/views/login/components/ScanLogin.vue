@@ -67,7 +67,8 @@
     console.log('点击了刷新')
     generateQrCode()
   }
-  // generateQrCode()
+
+  defineExpose({ generateQrCode, qrCodeConfig })
 </script>
 
 <template>
