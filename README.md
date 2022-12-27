@@ -26,3 +26,6 @@ yarn dev
 # 打包项目
 yarn build
 ```
+
+# License
+[MIT](https://github.com/tree-white/NeteaseCloudMusicTools/blob/master/LICENSE)
