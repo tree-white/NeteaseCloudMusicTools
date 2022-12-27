@@ -1,18 +1,28 @@
-# Vue 3 + TypeScript + Vite
+# NeteaseCloudMusicTools(网易云音乐云盘工具)
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+> 网易云音乐云盘上传工具
 
-## Recommended IDE Setup
+> 解决Mac电脑网易云音乐不支持上传云盘问题，使用扫码登录方式，获取云盘数据，支持对云盘歌曲的"增/删/查"
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+> 后端接口采用开源项目 [NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)
+> 本项目后端接口采用其推荐的 Vercel 部署，对接口不放心可自己部署
+> 支持替换成自己部署的 Api 链接，在页面右上角设置中输入自己的接口域名即可。
 
-## Type Support For `.vue` Imports in TS
+> 免费服务器上传速度相对来说会比较慢，如果懂自己部署的，且刚好有公网IP可以参试自己部署后替换接口即可。
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+> 同样也支持自己写接口，请求参数同样按照 [NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi) 接口文档配置即可
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+> 该项目里面包含了 plugin.json 该文件用于 utools 插件配置使用，不用可以自行删除
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+```bash
+# 拉取项目
+git clone https://github.com/tree-white/NeteaseCloudMusicTools.git
+# 进入项目
+cd NeteaseCloudMusicTools
+# 安装依赖
+yarn
+# 启动项目
+yarn dev
+# 打包项目
+yarn build
+```
