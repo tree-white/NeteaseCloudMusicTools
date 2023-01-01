@@ -10,6 +10,9 @@ import IconsResolver from 'unplugin-icons/resolver'
 // https://vitejs.dev/config/
 export default defineConfig({
   base: './',
+  build: {
+    sourcemap: true
+  },
   resolve: {
     alias: {
       '@': resolve(__dirname, './src'),
@@ -19,7 +22,7 @@ export default defineConfig({
   plugins: [
     vue(),
     AutoImport({
-      imports: ['vue', 'vue-router', 'pinia', { axios: [['default', 'axios']] }, { dayjs: [['*', 'dayjs']] }],
+      imports: ['vue', 'vue-router', 'pinia', { axios: [['default', 'axios']] }, { dayjs: [['default', 'dayjs']] }],
       dts: 'types/auto-imports.d.ts',
       // 自动导入 Element Plus 相关函数，如：ElMessage, ElMessageBox... (带样式)
       resolvers: [

@@ -9,10 +9,10 @@
 
   const props = withDefaults(
     defineProps<{
-      effect: 'dark' | 'light'
+      effect?: 'dark' | 'light'
       content: string
-      placement: Placement
-      iconColor: string
+      placement?: Placement
+      iconColor?: string
     }>(),
     {
       effect: 'dark',

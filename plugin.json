@@ -1,6 +1,6 @@
 {
   "main": "index.html",
-  "logo": "src/assets/可达鸭.jpg",
+  "logo": "./可达鸭.jpg",
   "features": [
     {
       "code": "NeteaseCloudMusicTools",
