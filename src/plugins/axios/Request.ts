@@ -17,7 +17,8 @@ export default class Request {
         const response = await this.instance.request<D>(config)
         resolve(response.data)
       } catch (error) {
-        reject(error)
+        console.warn('>>>>>> 响应异常=>', error)
+        reject('接口请求失败')
       }
     })
   }
@@ -27,14 +28,22 @@ export default class Request {
     this.instance.interceptors.request.use(
       (config: AxiosRequestConfig) => {
         console.log('>>>>>> config=>', config)
+        const FIELD = config.method === 'get' ? 'params' : 'data'
+
         // 设置基准地址
         config.baseURL = systemStore().baseUrl
+
         // 添加时间戳
         config.params = Object.assign(config.params ?? {}, { ts: Date.now() })
+
+        // 使用VPN时，代理的IP可能会被网易云拉入危险IP，需要传递一个真实的国内IP来做转换[手动开启，默认关闭]
+        systemStore().useRealIp && Object.assign(config[FIELD], { realIP: systemStore().realIp })
+
         // 非登录接口添加Cookie
         if (!config.url?.includes('/login')) {
-          config.params['cookie'] = userInfoStore().cookie
+          config[FIELD]['cookie'] = userInfoStore().cookie
         }
+
         return config
       },
       error => {

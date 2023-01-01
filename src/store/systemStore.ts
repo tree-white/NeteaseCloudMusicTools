@@ -6,19 +6,26 @@ export default defineStore('system', {
   getters: {
     baseUrl(state) {
       return state.env.VITE_BASE_URL || '/'
+    },
+    useRealIp(state) {
+      return state.env.VITE_USE_REAL_IP
+    },
+    realIp(state) {
+      return state.env.VITE_REAL_IP
     }
   },
   actions: {
-    setEnvBaseUrl(url: string) {
-      if (!url) return
-      const localEnv = utils.getStorage<ImportMetaEnv>('env') || ({} as ImportMetaEnv)
-      localEnv.VITE_BASE_URL = url
-      utils.saveStorage('env', localEnv)
-      this.env = _initialEnv()
-    },
     resetSystemConfig() {
       utils.removeStorage('env')
       this.env = _initialEnv()
+    },
+
+    saveEnvParams(params: Partial<ImportMetaEnv> = {}) {
+      if (!Object.keys(params).length) return
+      const localEnv = utils.getStorage<ImportMetaEnv>('env') || ({} as ImportMetaEnv)
+      utils.saveStorage('env', Object.assign(localEnv, params))
+      this.env = _initialEnv()
+      console.log('>>>>>> this.env=>', JSON.parse(JSON.stringify(this.env)))
     }
   }
 })

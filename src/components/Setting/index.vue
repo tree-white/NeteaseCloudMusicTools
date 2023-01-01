@@ -5,37 +5,54 @@
   const userInfo = userInfoStore()
 
   const emit = defineEmits<{ (event: 'refresh'): void }>()
+  const description = {
+    realIp: '在代理模式下,网易接口会判断环境为"异常环境",需要开启国内IP请求'
+  }
   const showSetting = ref<boolean>(false)
-  const form = ref({ baseUrl: '' })
+  const form = reactive<Partial<ImportMetaEnv>>({ VITE_BASE_URL: '', VITE_USE_REAL_IP: system.env.VITE_USE_REAL_IP })
 
   const confirm = () => {
-    system.setEnvBaseUrl(form.value.baseUrl)
+    system.saveEnvParams(form)
     showSetting.value = false
     emit('refresh')
+  }
+  const initial = () => {
+    for (const key in form) {
+      if (Object.prototype.hasOwnProperty.call(form, key)) {
+        form[key] = system.env[key]
+      }
+    }
   }
   const reset = () => {
-    form.value.baseUrl = ''
     system.resetSystemConfig()
+    initial()
     showSetting.value = false
     emit('refresh')
   }
+
+  initial()
+  console.log('>>>>>> form=>', form)
 </script>
 
 <template>
   <div class="setting">
-    <el-dropdown class="icon">
+    <el-dropdown class="icon" trigger="hover">
       <i-ep-Setting class="outline-none" />
       <template #dropdown>
         <el-dropdown-menu>
           <el-dropdown-item @click="showSetting = true">设置</el-dropdown-item>
-          <el-dropdown-item v-if="$route.name !== 'login'" @click="userInfo.logout">退出登录</el-dropdown-item>
+          <el-dropdown-item  @click="userInfo.logout">退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>
-    <el-dialog v-model="showSetting" title="设置配置" width="80%">
+    <el-dialog v-model="showSetting" title="设置配置" width="80%" @closed="initial">
       <el-form :model="form">
         <el-form-item label="请求地址">
-          <el-input v-model="form.baseUrl" autocomplete="off" />
+          <el-input v-model="form.VITE_BASE_URL" autocomplete="off" />
+        </el-form-item>
+        <el-form-item label="使用RealIP">
+          <el-switch v-model="form.VITE_USE_REAL_IP" active-color="#13ce66" />
+          <Tips :content="description.realIp" />
         </el-form-item>
       </el-form>
       <template #footer>

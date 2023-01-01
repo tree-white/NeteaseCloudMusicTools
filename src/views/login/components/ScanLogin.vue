@@ -73,8 +73,9 @@
 
 <template>
   <div class="m-scanLogin">
-    <slot name="header" />
-    <QrCode v-bind="qrCodeConfig" @refresh="refresh" />
+    <slot name="header"/>
+    <QrCode v-bind="qrCodeConfig" @refresh="refresh" class="my-4" />
+    <slot name="footer" />
   </div>
 </template>
 

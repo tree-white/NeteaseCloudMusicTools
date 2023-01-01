@@ -13,7 +13,8 @@ export const uploadCloudDisk = (options: UploadCloudDisk) =>
 export const getCloudDiskList = (limit?: number, offset?: number) =>
   http.request<null, QueryCloudDisk>({
     url: '/user/cloud',
-    params: { limit, offset }
+    method:'POST',
+    data: { limit, offset }
   })
 
 /** 云盘删除 */

@@ -1,6 +1,6 @@
 import utils from '@/common/utils'
+import { router } from '@/router'
 
-const router = useRouter()
 export default defineStore('userInfoStore', {
   state: () => ({
     info: utils.getStorage<LoginQrCheck>('userInfo') || ({} as LoginQrCheck)
