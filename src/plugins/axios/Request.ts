@@ -37,7 +37,9 @@ export default class Request {
         config.params = Object.assign(config.params ?? {}, { ts: Date.now() })
 
         // 使用VPN时，代理的IP可能会被网易云拉入危险IP，需要传递一个真实的国内IP来做转换[手动开启，默认关闭]
-        systemStore().useRealIp && Object.assign(config[FIELD], { realIP: systemStore().realIp })
+        if (systemStore().useRealIp) {
+          config[FIELD] = Object.assign(config[FIELD] || {}, { realIP: systemStore().realIp })
+        }
 
         // 非登录接口添加Cookie
         if (!config.url?.includes('/login')) {
