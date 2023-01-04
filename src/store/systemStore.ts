@@ -12,6 +12,9 @@ export default defineStore('system', {
     },
     realIp(state) {
       return state.env.VITE_REAL_IP
+    },
+    coolingTime(state) {
+      return +state.env.VITE_CAPTCHA_COOLING_TIME
     }
   },
   actions: {

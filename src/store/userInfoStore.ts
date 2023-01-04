@@ -3,7 +3,7 @@ import { router } from '@/router'
 
 export default defineStore('userInfoStore', {
   state: () => ({
-    info: utils.getStorage<LoginQrCheck>('userInfo') || ({} as LoginQrCheck)
+    info: utils.getStorage<IUserInfo>('userInfo') || ({} as IUserInfo)
   }),
   getters: {
     cookie(state) {
@@ -15,14 +15,14 @@ export default defineStore('userInfoStore', {
   },
   actions: {
     /** 设置用户信息 */
-    setUserInfo(info: Partial<LoginQrCheck>) {
+    setUserInfo(info: Partial<IUserInfo>) {
       Object.assign(this.info, info)
       utils.saveStorage('userInfo', this.info)
     },
     /** 注销/退出登录 */
     logout() {
       utils.removeStorage('userInfo')
-      this.info = {} as LoginQrCheck
+      this.info = {} as IUserInfo
       router.push('/login')
     }
   }

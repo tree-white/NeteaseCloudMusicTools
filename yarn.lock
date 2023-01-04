@@ -226,6 +226,11 @@
   resolved "https://registry.npmmirror.com/@types/estree/-/estree-1.0.0.tgz#5fb2e536c1ae9bf35366eed879e827fa59ca41c2"
   integrity sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==
 
+"@types/js-md5@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.npmmirror.com/@types/js-md5/-/js-md5-0.7.0.tgz#44648b3c9b2d465056cc73f76c0df24d386e7e00"
+  integrity sha512-4mN02EhCni6MlvCUl9bpcbMfu7R3G+ac+J37b7gKCu3tWhZc5/Ya41T+2QNR2aFt6vnMe+uTa5rFQ+nT2kl6cA==
+
 "@types/lodash-es@^4.17.6":
   version "4.17.6"
   resolved "https://registry.npmmirror.com/@types/lodash-es/-/lodash-es-4.17.6.tgz#c2ed4c8320ffa6f11b43eb89e9eaeec65966a0a0"
@@ -892,6 +897,11 @@ js-binary-schema-parser@^2.0.2:
   version "2.0.3"
   resolved "https://registry.npmmirror.com/js-binary-schema-parser/-/js-binary-schema-parser-2.0.3.tgz#3d7848748e8586e63b34e8911b643f59cfb6396e"
   integrity sha512-xezGJmOb4lk/M1ZZLTR/jaBHQ4gG/lqQnJqdIv4721DMggsa1bDVlHXNeHYogaIEHD9vCRv0fcL4hMA+Coarkg==
+
+js-md5@^0.7.3:
+  version "0.7.3"
+  resolved "https://registry.npmmirror.com/js-md5/-/js-md5-0.7.3.tgz#b4f2fbb0b327455f598d6727e38ec272cd09c3f2"
+  integrity sha512-ZC41vPSTLKGwIRjqDh8DfXoCrdQIyBgspJVPXHBGu4nZlAEvG3nf+jO9avM9RmLiGakg7vz974ms99nEV0tmTQ==
 
 jsonc-parser@^3.2.0:
   version "3.2.0"

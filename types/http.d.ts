@@ -35,6 +35,28 @@ interface LoginQrCheck {
   avatarUrl?: string
 }
 
+/** 手机号登录参数 */
+interface PhoneLoginData {
+  phone: string
+  password?: string
+  countrycode?: number
+  md5_password?: string
+  captcha?: number
+}
+
+/** 手机号登录响应 */
+interface PhoneLoginResponse extends HttpResponseCookie {
+  msg?: string
+  [key: string]: any
+}
+
+/** 邮箱号登录参数 */
+interface EMailLoginData extends Partial<PhoneLoginData> {
+  email: string
+}
+/** 邮箱号登录响应 */
+interface EMailLoginResponse extends PhoneLoginResponse {}
+
 //============================== 云盘 ==============================//
 type UploadCloudDisk = {
   data: FormData
@@ -194,4 +216,12 @@ interface DelCloudDisk {
   succIds: number[]
   failIds: any[]
   code: number
+}
+
+//============================== 用户信息 ==============================//
+interface IUserInfo extends LoginQrCheck {}
+
+//============================== 验证码返回 ==============================//
+interface CaptchaResponse extends HttpResponse<boolean> {
+  message?: string
 }

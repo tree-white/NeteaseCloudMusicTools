@@ -6,6 +6,7 @@ interface ImportMetaEnv {
   VITE_USE_REAL_IP: boolean
   VITE_REAL_IP: string
   VITE_REQUEST_TIMEOUT: number
+  VITE_CAPTCHA_COOLING_TIME: number
 }
 
 interface ImportMeta {

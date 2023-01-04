@@ -1,3 +1,5 @@
+import md5 from 'js-md5'
+
 const PROJECT_NAME = 'NeteaseCloudMusicTools'
 
 function getName(name: string) {
@@ -16,5 +18,9 @@ export default {
   /** 删除本地存储 */
   removeStorage(key: string) {
     window.localStorage.removeItem(getName(key))
+  },
+  /** MD5加密 */
+  md5Encrypt(data: any) {
+    return md5(data)
   }
 }

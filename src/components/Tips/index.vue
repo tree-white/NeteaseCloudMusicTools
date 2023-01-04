@@ -1,7 +1,9 @@
 <template>
-  <el-tooltip :effect="props.effect" :content="props.content" :placement="props.placement" raw-content>
-    <i-ep-info-filled :color="props.iconColor" class="mx-2" />
-  </el-tooltip>
+  <div>
+    <el-tooltip :effect="props.effect" :content="props.content" :placement="props.placement" raw-content>
+      <i-ep-info-filled :color="props.iconColor" class="mx-2" />
+    </el-tooltip>
+  </div>
 </template>
 
 <script setup lang="ts">
