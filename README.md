@@ -27,5 +27,16 @@ yarn dev
 yarn build
 ```
 
+# 功能图
+## 登录界面
+![扫码登录](https://image.treewhite.com/i2/2023/01/04/63b4f92e970db.png)
+![账密登录](https://image.treewhite.com/i2/2023/01/04/63b4f931ec6aa.png)
+![验证码登录](https://image.treewhite.com/i2/2023/01/04/63b4f9308f6e3.png)
+## 配置
+![自定义配置](https://image.treewhite.com/i2/2023/01/04/63b4f92b8b73b.png)
+## 界面
+![界面](https://image.treewhite.com/i2/2022/12/27/63aab148b8d29.png)
+![上传](https://image.treewhite.com/i2/2022/12/27/63aab165e8b2f.png)
+
 # License
 [MIT](https://github.com/tree-white/NeteaseCloudMusicTools/blob/master/LICENSE)
