@@ -3,7 +3,7 @@
   import ScanLogin from './components/ScanLogin.vue'
   import PhoneLogin from './components/PhoneLogin.vue'
 
-  const ScanLoginRef = ref<typeof ScanLogin>()
+  const ScanLoginRef = ref<InstanceType<typeof ScanLogin>>()
   const refresh = () => {
     ScanLoginRef.value!.generateQrCode()
   }

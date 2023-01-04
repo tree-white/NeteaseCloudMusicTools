@@ -11,7 +11,7 @@ import IconsResolver from 'unplugin-icons/resolver'
 export default defineConfig({
   base: './',
   build: {
-    sourcemap: true
+    // sourcemap: true
   },
   resolve: {
     alias: {
