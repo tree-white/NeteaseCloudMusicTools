@@ -19,7 +19,7 @@
       <li>能获取验证码但登录失败,表示网易又更改登录接口了 (<span class="text-orange-400">等更新</span>)</li>
     </ol>
   </div>`
-  const loginType = ref('账密登录')
+  const loginType = ref('扫码登录')
 </script>
 
 <template>
@@ -30,7 +30,7 @@
       <el-card shadow="always" :body-style="{ padding: '20px' }">
         <template #header>
           <section class="w-[400px] flex justify-center items-center relative px-10">
-            <el-radio-group v-model="loginType" @change="">
+            <el-radio-group v-model="loginType">
               <el-radio-button label="扫码登录" />
               <el-radio-button label="账密登录" />
               <el-radio-button label="验证码登录" />

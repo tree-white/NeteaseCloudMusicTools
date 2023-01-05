@@ -7,7 +7,7 @@
   const userInfo = reactive<Partial<LoginQrCheck>>({})
   const qrCodeConfig = reactive({ isExpire: true, errorHint: '点击获取二维码', text: '', waitHint: '', avatar: '' })
   const router = useRouter()
-  let timer: number | null
+  const isUnmounted = ref(false)
 
   const resetConfig = (error: string) => {
     Object.assign(qrCodeConfig, { isExpire: true, waitHint: '', errorHint: error, avatar: '' })
@@ -16,29 +16,29 @@
   /** 轮询状态 */
   const pollingState = async () => {
     try {
+      if (isUnmounted.value) throw '重新获取二维码'
       const { code, cookie, nickname, avatarUrl } = await queryQrCodeState({ key: key.value })
       switch (code) {
         case 800: // 二维码过期
           throw '二维码过期'
         case 801: // 等待扫码
           qrCodeConfig.waitHint = '请打开手机网易云音乐App进行扫码'
-          timer = setTimeout(() => pollingState(), 1000)
+          setTimeout(() => pollingState(), 1000)
           break
         case 802: // 已扫码等待确认
           qrCodeConfig.waitHint = `${nickname} 请在手机上点击授权`
           qrCodeConfig.avatar = avatarUrl!
           Object.assign(userInfo, { cookie, nickname, avatarUrl })
-          timer = setTimeout(() => pollingState(), 2000)
+          setTimeout(() => pollingState(), 2000)
           break
         case 803: // 授权成功
           Object.assign(userInfo, { cookie })
           infoStore.setUserInfo(userInfo)
           qrCodeConfig.waitHint = '授权成功,即将跳转...'
-          timer = setTimeout(() => router.push('/cloud'), 2000)
+          setTimeout(() => router.push('/cloud'), 2000)
           break
       }
     } catch (error) {
-      console.log('>>>>>> error=>', error)
       resetConfig(error as string)
     }
   }
@@ -59,19 +59,16 @@
       })
       pollingState()
     } catch (error) {
-      console.log('>>>>>> error=>', error)
       resetConfig(error as string)
     }
   }
 
   const refresh = () => {
-    console.log('点击了刷新')
     generateQrCode()
   }
 
-  onUnmounted(() => {
-    console.log('触发了卸载')
-    !!timer && clearTimeout(timer)
+  onBeforeUnmount(() => {
+    isUnmounted.value = true
   })
   defineExpose({ generateQrCode, qrCodeConfig })
 </script>
