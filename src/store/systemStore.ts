@@ -5,7 +5,7 @@ export default defineStore('system', {
   }),
   getters: {
     baseUrl(state) {
-      return state.env.VITE_BASE_URL || '/'
+      return state.env.CUSTOM_BASE_URL || state.env.VITE_BASE_URL || '/'
     },
     useRealIp(state) {
       return state.env.VITE_USE_REAL_IP
@@ -15,6 +15,9 @@ export default defineStore('system', {
     },
     coolingTime(state) {
       return +state.env.VITE_CAPTCHA_COOLING_TIME
+    },
+    reserveUrl(state) {
+      return state.env.VITE_BASE_RESERVE_URL.split(',')
     }
   },
   actions: {
@@ -28,7 +31,15 @@ export default defineStore('system', {
       const localEnv = utils.getStorage<ImportMetaEnv>('env') || ({} as ImportMetaEnv)
       utils.saveStorage('env', Object.assign(localEnv, params))
       this.env = _initialEnv()
-      console.log('>>>>>> this.env=>', JSON.parse(JSON.stringify(this.env)))
+    },
+
+    nextReserveUrl() {
+      const index = this.reserveUrl.findIndex(url => url === this.env.VITE_BASE_URL)
+      if ([-1, this.reserveUrl.length - 1].includes(index)) {
+        return this.reserveUrl[0]
+      } else {
+        return this.reserveUrl[index + 1]
+      }
     }
   }
 })

@@ -5,7 +5,7 @@
 
   const ScanLoginRef = ref<InstanceType<typeof ScanLogin>>()
   const refresh = () => {
-    ScanLoginRef.value!.generateQrCode()
+    ScanLoginRef.value?.generateQrCode()
   }
   const tips = `
   <div>
@@ -29,7 +29,7 @@
     <section>
       <el-card shadow="always" :body-style="{ padding: '20px' }">
         <template #header>
-          <section class="flex justify-center items-center relative px-10">
+          <section class="w-[400px] flex justify-center items-center relative px-10">
             <el-radio-group v-model="loginType" @change="">
               <el-radio-button label="扫码登录" />
               <el-radio-button label="账密登录" />
@@ -41,9 +41,6 @@
 
         <!-- 扫码登录 -->
         <ScanLogin v-if="loginType === '扫码登录'" ref="ScanLoginRef">
-          <!-- <template #header>
-            <Tips :content="tips" placement="top" />
-          </template> -->
           <template #footer>
             <el-button
               v-if="ScanLoginRef?.qrCodeConfig.isExpire && userInfoStore().cookie"
